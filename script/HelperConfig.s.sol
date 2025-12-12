@@ -25,7 +25,7 @@ contract HelperConfig is Script {
             activeNetworkConfig = getSepoliaEthConfig();
         } else if (block.chainid == 1) {
             activeNetworkConfig = getMainnetEthConfig();
-        }else {
+        } else {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
         }
     }

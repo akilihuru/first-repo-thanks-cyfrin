@@ -24,4 +24,4 @@ contract InteractionsTest is Test {
         FundFundMe fundFundMe = new FundFundMe();
         fundFundMe.fundFundMe(address(fundMe));
     }
-    }
+}
