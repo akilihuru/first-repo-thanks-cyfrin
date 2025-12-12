@@ -9,7 +9,8 @@ import {FundMe} from "../src/FundMe.sol";
 contract DeployFundMe is Script {
     function deployFundMe() public returns (FundMe, HelperConfig) {
         HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks!
-        address priceFeed = helperConfig.getConfigByChainId(block.chainid).priceFeed;
+        (address priceFeed) = helperConfig.activeNetworkConfig();
+
 
         vm.startBroadcast();
         FundMe fundMe = new FundMe(priceFeed);
@@ -17,7 +18,9 @@ contract DeployFundMe is Script {
         return (fundMe, helperConfig);
     }
 
-    function run() external returns (FundMe, HelperConfig) {
-        return deployFundMe();
+    // 👇 tests expect only FundMe from run()
+    function run() external returns (FundMe) {
+        (FundMe fundMe, ) = deployFundMe(); // ignore HelperConfig with the comma
+        return fundMe;
     }
 }
