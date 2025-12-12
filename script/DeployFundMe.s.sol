@@ -11,7 +11,6 @@ contract DeployFundMe is Script {
         HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks!
         (address priceFeed) = helperConfig.activeNetworkConfig();
 
-
         vm.startBroadcast();
         FundMe fundMe = new FundMe(priceFeed);
         vm.stopBroadcast();
@@ -20,7 +19,7 @@ contract DeployFundMe is Script {
 
     // 👇 tests expect only FundMe from run()
     function run() external returns (FundMe) {
-        (FundMe fundMe, ) = deployFundMe(); // ignore HelperConfig with the comma
+        (FundMe fundMe,) = deployFundMe(); // ignore HelperConfig with the comma
         return fundMe;
     }
 }
